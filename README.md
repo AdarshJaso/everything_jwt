@@ -29,7 +29,7 @@ A full-stack authentication app built using **Node.js**, **React**, **TypeScript
 
 ```bash
 git clone https://github.com/AdarshJaso/everything_jwt.git
-cd everything-jwt
+cd everything_jwt
 
 # Root (React frontend)
 yarn install
