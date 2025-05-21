@@ -28,7 +28,7 @@ A full-stack authentication app built using **Node.js**, **React**, **TypeScript
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/AdarshJaso/everything-jwt.git
+git clone https://github.com/AdarshJaso/everything_jwt.git
 cd everything-jwt
 
 # Root (React frontend)
