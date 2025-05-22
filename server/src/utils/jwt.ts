@@ -6,8 +6,8 @@ const generateJWTToken = (payload) => {
 };
 
 const verifyJWTToken = (token) => {
-  const status = jwt.verify(token, process.env.SECRET_JWT_TOKEN!);
-  return status;
+  const decoded = jwt.verify(token, process.env.SECRET_JWT_TOKEN!);
+  return decoded;
 };
 
 export { generateJWTToken, verifyJWTToken };
