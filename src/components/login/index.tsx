@@ -56,6 +56,9 @@ const Login = () => {
       const decoded: any = jwtDecode(result.token);
       dispatch(login({ token: result.token, role: decoded.role }));
       navigate('/');
+      setTimeout(() => {
+        window.location.reload(); // for security reason
+      }, 100);
       console.log('Login successful');
     } else {
       console.log('Login failed');
