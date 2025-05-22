@@ -1,10 +1,11 @@
 import { verifyJWTToken } from '../utils/jwt';
+import { sendJsonResponse } from '../utils/sendJsonResponse';
 
 export const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader?.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Missing or invalid token' });
+    return sendJsonResponse(res, 401, { message: 'Missing or invalid token' });
   }
 
   const token = authHeader.split(' ')[1];
@@ -14,6 +15,6 @@ export const verifyToken = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    return res.status(403).json({ message: 'Token is invalid or expired' });
+    return sendJsonResponse(res, 403, { message: 'Token is invalid or expired' });
   }
 };
