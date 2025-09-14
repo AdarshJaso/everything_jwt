@@ -12,7 +12,12 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false, // disable sourcemaps in production for smaller builds
+    cssCodeSplit: true, // split CSS for better caching
+    minify: 'esbuild', // fastest minifier
+  },
+  css: {
+    postcss: './postcss.config.js', // ensure PostCSS uses your config
   },
   resolve: {
     alias: {
