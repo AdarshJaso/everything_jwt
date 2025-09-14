@@ -11,7 +11,7 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        project: './tsconfig.server.json',
+        project: './tsconfig.json',
       },
     },
     plugins: {
@@ -21,7 +21,7 @@ export default [
     settings: {
       'import/resolver': {
         typescript: {
-          project: './tsconfig.server.json',
+          project: './tsconfig.json',
         },
       },
     },

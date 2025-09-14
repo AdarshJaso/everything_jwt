@@ -1,7 +1,26 @@
+import { IncomingMessage, ServerResponse } from 'http';
+
 import { verifyJWTToken } from '../utils/jwt';
 import { sendJsonResponse } from '../utils/sendJsonResponse';
 
-export const verifyToken = (req, res, next) => {
+interface DecodedJWT {
+  username: string;
+  role: string;
+}
+
+declare module 'http' {
+  interface IncomingMessage {
+    user?: DecodedJWT;
+  }
+}
+
+type NextFunction = () => void;
+
+export const verifyToken = (
+  req: IncomingMessage,
+  res: ServerResponse,
+  next: NextFunction
+): void => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader?.startsWith('Bearer ')) {

@@ -1,11 +1,18 @@
+import { IncomingMessage, ServerResponse } from 'http';
+
 import { generateJWTToken } from '../utils/jwt';
 import { sendJsonResponse } from '../utils/sendJsonResponse';
 
-export const loginHandler = async (req, res) => {
+interface LoginRequestBody {
+  username: string;
+  password: string;
+}
+
+export const loginHandler = async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
   let body = '';
-  req.on('data', (chunk) => (body += chunk));
+  req.on('data', (chunk: Buffer) => (body += chunk));
   req.on('end', () => {
-    const { username, password } = JSON.parse(body);
+    const { username, password }: LoginRequestBody = JSON.parse(body);
 
     if (username === 'admin' && password === '1234') {
       const token = generateJWTToken({ username, role: 'admin' });
@@ -19,6 +26,10 @@ export const loginHandler = async (req, res) => {
   });
 };
 
-export const protectedHandler = (req, res) => {
-  sendJsonResponse(res, 200, { message: `Hello ${req.user.username}, you're authorized!` });
+export const protectedHandler = (req: IncomingMessage, res: ServerResponse): void => {
+  if (req['user']) {
+    sendJsonResponse(res, 200, { message: `Hello ${req['user'].username}, you're authorized!` });
+  } else {
+    sendJsonResponse(res, 401, { error: 'Unauthorized' });
+  }
 };
