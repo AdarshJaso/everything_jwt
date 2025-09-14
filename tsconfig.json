@@ -17,8 +17,9 @@
       "@utils/*": ["./src/utils/*"]
     },
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "types": ["vite-plugin-svgr/client"]
   },
-  "include": ["src/**/*", "eslint.config.js", "tailwind.config.js", "vite.config.js"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

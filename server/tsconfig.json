@@ -24,6 +24,6 @@
     "resolveFullPaths": true,
     "verbose": false
   },
-  "include": ["src/**/*", "eslint.config.js", "src/types/**/*.d.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
